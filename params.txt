@@ -1,0 +1,74 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% XBeach parameter settings input file
+%%% date:     09-Sep-2011 09:45:52
+%%% function: xb_write_params
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Physical processes %%%%%%%%
+swave       = 0
+nonh        = 1
+sedtrans    = 0
+morphology  = 0
+vegetation = 1
+wavemodel 	= nonh
+%%% Vegetation %%%%%%%%%%%%%%%%
+veggiefile    = vegetation.txt
+veggiemapfile = vegrigidmap.txt
+%%% Advanced model coefficients %%%
+eps         = 0.001
+CFL         = 1.3
+g           = 9.81
+rho         = 1000
+depthscale  = 1
+%%% Grid parameters %%%
+posdwn      = -1
+depfile     = bed.txt
+alfa        = 0.
+vardx 	    = 1
+nx = 2151
+ny          = 0
+xfile       = x.txt
+yfile       = y.txt
+xori        = 0
+yori        = 0
+%%% Bed composition parameters %%%
+bedfriction = manning
+bedfricfile = bedfricfile.txt
+%%% Non-hydrostatic correction parameters %%%
+maxbrsteep  = 0.65
+%%% Wave boundary condition parameters %%%
+instat      = jons
+bcfile      = jonswap.txt
+%%% Wave-spectrum boundary condition parameters %%%
+random      = 0
+%% Flow boundary condition parameters %%%
+left        = wall
+right       = wall
+front       = nonh_1d
+back        = abs_1d
+%%% Tide boundary conditions%%%
+zs0 = 0
+%%% Output options %%%
+npoints = 8
+0. 0.
+3503.50 0.
+3715.00 0.
+3772.00 0.
+3773.02 0.
+3774.02 0.
+3775.05 0.
+3778.05 0.
+npointvar = 4
+zs
+zb
+x
+qx
+%%% Output variables %%%
+outputformat = fortran
+tstart = 0.0
+tstop = 900.
+tintg = 0.5
+nglobalvar = 3
+zb                  
+zs                 
+x
+

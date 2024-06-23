@@ -1,0 +1,6 @@
+ Warning: Specification of nonh using parameter 'wavemodel'
+ Warning: Specification of instat using parameter 'wbctype'
+                       CFL =1.3000 Warning: value > recommended value of.9000
+  Warning: bed friction coefficient values from file 'bedfricfile.txt' will be used in computation
+                         s =10000.0000 Warning: value > recommended value of1000.0000
+  Warning: shallow water so long wave variance is reduced using par%nmax
