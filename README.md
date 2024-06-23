@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository contains the dataset and MATLAB code used for the paper "Optimized Features of Hybrid Vegetation-Seawall Coastal Systems: Analytics for Design." This project aims to analyze and optimize the design of coastal systems that incorporate both vegetation and seawall structures to enhance flood protection and serviceability.
+This repository contains the dataset and MATLAB code used for the paper "Hybrid Vegetation-Seawall Coastal Systems for Wave Hazard Reduction: Analytics for Design from Optimized Features". This project aims to analyze and optimize the design of coastal systems that incorporate both vegetation and seawall structures to enhance flood protection and serviceability.
 
 The MATLAB scripts in this repository include functions for calculating key metrics such as wave runup, overtopping, robustness, and serviceability of coastal structures using the Xbeach model. The dataset includes various input parameters and results from Xbeach Non-hydrostatic simulations conducted for the study.
 
@@ -23,7 +23,7 @@ Repository/
 │   ├── FFF_Steepness.m
 │   └── FFF_Vegrigidmap.m
 ├── README.md
-└── [Other files]
+└── Licence.md
 ```
 
 ## Installation
