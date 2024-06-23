@@ -72,4 +72,4 @@ This project is funded, in part, by the US Coastal Research Program (USCRP) as a
 
 ## Contact
 
-For any questions or further information, please contact Erfan Amini at [eamini@stevens.edu].
+For any questions or further information, please contact Erfan Amini at eamini@stevens.edu.
