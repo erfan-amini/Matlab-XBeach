@@ -1,0 +1,134 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% XBeach parameter settings input file - RECOMMENDED MODIFICATIONS       %%%
+%%% For: Short period regular wave flume experiment (T=0.5-0.9s)           %%%
+%%% Modified to reduce numerical diffusion and wave decay                  %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Bed composition parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+D50        = 0.000128
+D90        = 0.000181
+
+%%% General %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+wavemodel  = nonh
+dryslp     = 1
+wetslp     = 0.15
+morphology = 0
+sedtrans   = 0
+m          = 1
+
+%%% KEY CHANGES TO REDUCE WAVE DECAY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. Reduced horizontal viscosity (was 0.01, now 0.001)
+%    High viscosity causes excessive damping of short-period waves
+nuh        = 0.001
+
+% 2. Enabled Smagorinsky subgrid model (was 0, now 0.1)
+%    Provides scale-dependent turbulence modeling
+smag       = 0.1
+
+% 3. Increased CFL for less numerical diffusion (was 0.3, now 0.5)
+%    Test carefully - may need to adjust between 0.4-0.5 for stability
+CFL        = 0.5
+
+%%% Grid parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+depfile    = scan1_zcoord_micp2fine_wholeflume.txt
+posdwn     = 0
+nx         = 1300
+ny         = 0
+alfa       = 0
+vardx      = 1
+dx         = 0
+dy         = 0
+xfile      = scan1_xcoord_micp2fine_wholeflume.txt
+yfile      = scan1_ycoord_micp2fine_wholeflume.txt
+xori       = 0
+yori       = -0.93
+thetamin   = -90
+thetamax   = 90
+dtheta     = 10
+
+%%% Initial conditions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+zs0        = 0.0
+
+%%% Wave-spectrum boundary condition parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+wbctype    = params
+random     = 0
+Hrms       = 0.0468
+Tm01       = 0.4925
+
+% ALTERNATIVE: If you have time series from WG1, uncomment these instead:
+% wbctype   = ts_nonh
+% tsspecloc = 1
+% bcfile    = timeseries_wg1.txt
+
+%%% Bed friction %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+bedfriction = cf
+bedfricfile = cf_0.txt
+
+% NOTE: Check your cf_0.txt values. For flume experiments with smooth/fine sand,
+% cf should typically be 0.001-0.005. High bed friction also causes wave decay.
+
+%%% Non-hydrostatic correction parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 4. Increased maxbrsteep to delay premature breaking (was not set, now 0.8)
+maxbrsteep  = 0.8
+
+%%% Model time %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+tstop      = 100
+
+%%% Boundary condition parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+front = nonh_1d
+back  = abs_1d
+left  = wall
+right = wall
+
+%%% Wave boundary condition parameters %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+taper      = 5
+morstart   = 5
+morfac     = 1
+
+%%% Output variables %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+outputformat = netcdf
+tintg      = 0.05
+tintp      = 0.05
+tstart     = 0
+
+nglobalvar = 9
+H
+zb
+zs
+R
+ue
+ve
+u
+v
+ccg
+
+nmeanvar = 3
+H
+zb
+zs
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% TESTING SEQUENCE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% Test these changes incrementally:
+%%% 1. First: Change only nuh = 0.001, keep other parameters
+%%% 2. Then: Add smag = 0.1
+%%% 3. Then: Increase CFL to 0.4, check stability
+%%% 4. Then: Increase CFL to 0.5 if stable
+%%% 5. Finally: Adjust maxbrsteep if needed
+%%%
+%%% Monitor: wave heights at WG1, WG2, WG3, WG4
+%%%          Compare decay rate to measurements
+%%%          Check for numerical instabilities (NaN, oscillations)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
